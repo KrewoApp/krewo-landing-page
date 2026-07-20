@@ -228,8 +228,13 @@
           </div>
           <label>What takes up the most office time?<textarea name="pain_point" rows="4" placeholder="Scheduling, missed calls, follow-ups, dispatching..."></textarea></label>
           <label class="checkbox-row"><input type="checkbox" name="marketing_consent" value="yes" /> I agree to receive occasional updates about Krewo.</label>
-          <button class="btn" type="submit">Request my demo</button>
           <p id="form-status" class="form-status" aria-live="polite"></p>
+          <input
+              type="hidden"
+              name="_next"
+              value="https://krewoapp.netlify.app/thank-you.html">
+
+          <button class="btn" type="submit">Request my demo</button>
         </form>
       </div>
     </section>
