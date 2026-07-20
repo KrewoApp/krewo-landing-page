@@ -136,9 +136,7 @@ leadForm.addEventListener('submit', async event => {
       headers: { Accept: 'application/json' }
     });
     if (!response.ok) throw new Error('Submission failed');
-    leadForm.reset();
-    formStatus.textContent = 'Thanks. Your demo request has been sent.';
-    formStatus.className = 'form-status success';
+    window.location.href = 'thank-you.html';
   } catch (error) {
     formStatus.textContent = 'The form could not be sent. Please try again or contact Krewo directly.';
     formStatus.className = 'form-status error';
