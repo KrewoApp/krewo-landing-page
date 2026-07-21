@@ -16,6 +16,9 @@ const activities = [
 ];
 
 let demoIndex = 0;
+let demoTimer = null;
+let isPlaying = false;
+
 const chatWindow = document.querySelector('#chat-window');
 const startButton = document.querySelector('#start-demo');
 const nextButton = document.querySelector('#next-message');
@@ -33,6 +36,20 @@ function addMessage(message) {
   bubble.innerHTML = `${message.text}<small>9:${42 + demoIndex}</small>`;
   chatWindow.appendChild(bubble);
   chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function showTypingIndicator() {
+  if (!chatWindow || chatWindow.querySelector('.typing-indicator')) return;
+  const typing = document.createElement('div');
+  typing.className = 'message ai typing-indicator';
+  typing.setAttribute('aria-label', 'Krewo is typing');
+  typing.innerHTML = '<i></i><i></i><i></i>';
+  chatWindow.appendChild(typing);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  chatWindow?.querySelector('.typing-indicator')?.remove();
 }
 
 function addActivity(index) {
@@ -70,18 +87,50 @@ function updateDashboard() {
 
 function advanceDemo() {
   if (demoIndex >= messages.length) {
+    isPlaying = false;
+    startButton.disabled = false;
+    startButton.textContent = '▶ Watch again';
     nextButton.disabled = true;
     return;
   }
+
+  hideTypingIndicator();
   addMessage(messages[demoIndex]);
   demoIndex += 1;
   updateDashboard();
   nextButton.disabled = demoIndex >= messages.length;
 }
 
+function scheduleNextMessage() {
+  if (!isPlaying || demoIndex >= messages.length) {
+    advanceDemo();
+    return;
+  }
+
+  const nextMessage = messages[demoIndex];
+  const typingDelay = nextMessage.sender === 'ai' ? 750 : 350;
+  const pauseAfter = nextMessage.sender === 'ai' ? 1250 : 900;
+
+  if (nextMessage.sender === 'ai') showTypingIndicator();
+
+  demoTimer = window.setTimeout(() => {
+    advanceDemo();
+    if (demoIndex < messages.length) {
+      demoTimer = window.setTimeout(scheduleNextMessage, pauseAfter);
+    } else {
+      isPlaying = false;
+      startButton.disabled = false;
+      startButton.textContent = '▶ Watch again';
+    }
+  }, typingDelay);
+}
+
 function resetDemo() {
+  window.clearTimeout(demoTimer);
+  demoTimer = null;
+  isPlaying = false;
   demoIndex = 0;
-  chatWindow.innerHTML = '<div class="message ai">Start the demo to see how Krewo turns a customer message into an organized job.<small>9:41</small></div>';
+  chatWindow.innerHTML = '<div class="message ai">Watch the demo to see how Krewo turns a customer request into organized work.<small>9:41</small></div>';
   newJob.classList.add('hidden');
   jobTag.textContent = 'Pending';
   jobTag.classList.add('warning');
@@ -91,31 +140,47 @@ function resetDemo() {
   dashboardStatus.classList.add('muted');
   activityFeed.innerHTML = '<div class="feed-item"><span class="dot"></span><div><strong>System ready</strong><small>Waiting for a new customer request</small></div></div>';
   startButton.disabled = false;
+  startButton.textContent = '▶ Watch demo';
   nextButton.disabled = true;
 }
 
-startButton.addEventListener('click', () => {
+startButton?.addEventListener('click', () => {
+  if (demoIndex >= messages.length) resetDemo();
+  isPlaying = true;
   startButton.disabled = true;
-  nextButton.disabled = false;
-  advanceDemo();
+  startButton.textContent = 'Playing…';
+  scheduleNextMessage();
 });
-nextButton.addEventListener('click', advanceDemo);
-restartButton.addEventListener('click', resetDemo);
+nextButton?.addEventListener('click', advanceDemo);
+restartButton?.addEventListener('click', resetDemo);
 resetDemo();
 
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.primary-nav');
-menuToggle.addEventListener('click', () => {
+
+function closeMenu() {
+  nav?.classList.remove('open');
+  menuToggle?.setAttribute('aria-expanded', 'false');
+}
+
+menuToggle?.addEventListener('click', () => {
   const open = nav.classList.toggle('open');
   menuToggle.setAttribute('aria-expanded', String(open));
 });
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMenu();
+});
+document.addEventListener('click', event => {
+  if (!nav?.classList.contains('open')) return;
+  if (!nav.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+});
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const leadForm = document.querySelector('#lead-form');
 const formStatus = document.querySelector('#form-status');
-leadForm.addEventListener('submit', async event => {
+leadForm?.addEventListener('submit', async event => {
   const endpoint = leadForm.getAttribute('action');
   if (endpoint.includes('YOUR_FORM_ID')) {
     event.preventDefault();

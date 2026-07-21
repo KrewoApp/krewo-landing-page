@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Krewo is an AI-powered office manager for field service businesses." />
+  <meta name="description" content="Krewo is a smart AI office manager for local service and delivery businesses, helping teams capture requests, organize work, schedule jobs, and follow up automatically." />
   <title>Krewo | AI-Powered Office Manager</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#top" aria-label="Krewo home">
-        <span class="brand-mark">K</span>
+        <img class="brand-logo" src="krewo-logo.png" alt="" width="40" height="40" />
         <span>Krewo</span>
       </a>
 
@@ -34,11 +34,11 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Built for busy service businesses</span>
-          <h1>Your AI-powered office manager.</h1>
-          <p class="hero-text">Krewo turns customer messages into organized requests, scheduled jobs, follow-ups, and crew updates—without taking control away from the owner.</p>
+          <span class="eyebrow">Built for local service and delivery businesses</span>
+          <h1>Never miss another customer request.</h1>
+          <p class="hero-text">Meet Krewo—your smart AI office manager that captures customer requests, organizes work, schedules jobs and deliveries, follows up automatically, and keeps your business moving.</p>
           <div class="hero-actions">
-            <a class="btn" href="#contact">Request a 20-minute demo</a>
+            <a class="btn" href="#contact">Schedule a free 20-minute demo</a>
             <a class="btn btn-secondary" href="#demo">See Krewo in action</a>
           </div>
           <div class="trust-row" aria-label="Core benefits">
@@ -56,7 +56,7 @@
             </div>
             <div class="mini-dashboard">
               <div class="mini-sidebar">
-                <div class="mini-logo">K</div>
+                <div class="mini-logo"><img src="krewo-logo.png" alt="" /></div>
                 <div class="side-line active"></div>
                 <div class="side-line"></div>
                 <div class="side-line"></div>
@@ -134,11 +134,11 @@
           <div class="phone-wrap">
             <div class="phone">
               <div class="phone-top"><span>9:41</span><strong>Krewo</strong><span>•••</span></div>
-              <div class="chat-header"><div class="avatar">K</div><div><strong>Krewo Assistant</strong><small>Online</small></div></div>
+              <div class="chat-header"><div class="avatar"><img src="krewo-logo.png" alt="" /></div><div><strong>Krewo Assistant</strong><small>Online</small></div></div>
               <div id="chat-window" class="chat-window" aria-live="polite"></div>
               <div class="chat-controls">
-                <button id="start-demo" class="btn btn-small" type="button">Start demo</button>
-                <button id="next-message" class="btn btn-secondary btn-small" type="button" disabled>Next</button>
+                <button id="start-demo" class="btn btn-small demo-play" type="button">▶ Watch demo</button>
+                <button id="next-message" class="btn btn-secondary btn-small visually-hidden" type="button" disabled>Next</button>
                 <button id="restart-demo" class="text-button" type="button">Restart</button>
               </div>
             </div>
@@ -150,9 +150,9 @@
               <span id="dashboard-status" class="status-pill muted">Waiting for request</span>
             </div>
             <div class="dashboard-metrics">
-              <div class="metric"><span>New requests</span><strong id="request-count">2</strong></div>
-              <div class="metric"><span>Jobs today</span><strong>8</strong></div>
-              <div class="metric"><span>Approvals</span><strong id="approval-count">1</strong></div>
+              <div class="metric"><span>Customer requests</span><strong id="request-count">2</strong></div>
+              <div class="metric"><span>Jobs & deliveries</span><strong>8</strong></div>
+              <div class="metric"><span>Need approval</span><strong id="approval-count">1</strong></div>
             </div>
             <div class="dashboard-panels">
               <div class="panel">
@@ -195,7 +195,7 @@
           <h2>Small teams that need a better front office.</h2>
         </div>
         <div class="industry-grid">
-          <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Cleaning</span><span>Landscaping</span><span>Pest control</span><span>Property maintenance</span><span>Apartment management</span>
+          <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Cleaning</span><span>Landscaping</span><span>Florists</span><span>Restaurants</span><span>Bakeries</span><span>Dry cleaners</span><span>Auto parts</span><span>Print & sign shops</span><span>Local delivery teams</span>
         </div>
       </div>
     </section>
@@ -221,7 +221,7 @@
             <label>Business type
               <select name="business_type" required>
                 <option value="">Select one</option>
-                <option>HVAC</option><option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Landscaping</option><option>Pest control</option><option>Property management</option><option>Other</option>
+                <option>HVAC</option><option>Plumbing</option><option>Electrical</option><option>Cleaning</option><option>Landscaping</option><option>Pest control</option><option>Property management</option><option>Restaurant</option><option>Florist</option><option>Bakery / cake shop</option><option>Dry cleaner</option><option>Auto parts</option><option>Print / sign company</option><option>Local delivery business</option><option>Other</option>
               </select>
             </label>
             <label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" /></label>
@@ -242,12 +242,12 @@
 
   <footer class="site-footer">
     <div class="container footer-wrap">
-      <a class="brand" href="#top"><span class="brand-mark">K</span><span>Krewo</span></a>
-      <p>AI-powered office coordination for service businesses.</p>
+      <a class="brand" href="#top"><img class="brand-logo" src="krewo-logo.png" alt="" width="40" height="40" /><span>Krewo</span></a>
+      <p>Smart office coordination for local service and delivery businesses.</p>
       <p>© <span id="year"></span> Krewo</p>
     </div>
   </footer>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

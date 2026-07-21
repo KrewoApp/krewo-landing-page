@@ -54,9 +54,20 @@
             opacity:.9;
         }
 
-        .logo{
-            font-size:3rem;
+        .logo-image{
+            width:76px;
+            height:76px;
+            object-fit:cover;
+            border-radius:20px;
             margin-bottom:1rem;
+            box-shadow:0 14px 34px rgba(0,0,0,.28);
+        }
+
+        @media (max-width:600px){
+            body{padding:1rem;}
+            .card{padding:2rem 1.25rem;border-radius:16px;}
+            h1{font-size:2rem;}
+            .btn{width:100%;}
         }
     </style>
 </head>
@@ -65,7 +76,7 @@
 
 <div class="card">
 
-<div class="logo">✅</div>
+<img class="logo-image" src="krewo-logo.png" alt="Krewo" />
 
 <h1>Thank You!</h1>
 
