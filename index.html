@@ -127,14 +127,22 @@
         <div class="section-heading light">
           <span class="eyebrow">Interactive prototype</span>
           <h2>See the mobile and dashboard workflow together.</h2>
-          <p>Start the conversation and watch the request move into the operations dashboard.</p>
+          <p>Choose a business type, then watch Krewo turn a customer request into organized work.</p>
+        </div>
+
+        <div class="industry-demo-switcher" role="group" aria-label="Choose a business demo">
+          <button class="industry-demo-button active" type="button" data-industry="hvac" aria-pressed="true">HVAC</button>
+          <button class="industry-demo-button" type="button" data-industry="florist" aria-pressed="false">Florist</button>
+          <button class="industry-demo-button" type="button" data-industry="bakery" aria-pressed="false">Bakery</button>
+          <button class="industry-demo-button" type="button" data-industry="restaurant" aria-pressed="false">Restaurant</button>
+          <button class="industry-demo-button" type="button" data-industry="courier" aria-pressed="false">Courier delivery</button>
         </div>
 
         <div class="demo-grid">
           <div class="phone-wrap">
             <div class="phone">
               <div class="phone-top"><span>9:41</span><strong>Krewo</strong><span>•••</span></div>
-              <div class="chat-header"><div class="avatar"><img src="krewo-logo.png" alt="" /></div><div><strong>Krewo Assistant</strong><small>Online</small></div></div>
+              <div class="chat-header"><div class="avatar"><img src="krewo-logo.png" alt="" /></div><div><strong id="assistant-name">Krewo Assistant</strong><small id="assistant-status">HVAC workflow · Online</small></div></div>
               <div id="chat-window" class="chat-window" aria-live="polite"></div>
               <div class="chat-controls">
                 <button id="start-demo" class="btn btn-small demo-play" type="button">▶ Watch demo</button>
@@ -146,21 +154,21 @@
 
           <div class="dashboard-demo">
             <div class="dashboard-header">
-              <div><small>Live prototype</small><h3>Operations dashboard</h3></div>
+              <div><small id="dashboard-industry-label">HVAC workflow</small><h3 id="dashboard-title">Service operations dashboard</h3></div>
               <span id="dashboard-status" class="status-pill muted">Waiting for request</span>
             </div>
             <div class="dashboard-metrics">
-              <div class="metric"><span>Customer requests</span><strong id="request-count">2</strong></div>
-              <div class="metric"><span>Jobs & deliveries</span><strong>8</strong></div>
-              <div class="metric"><span>Need approval</span><strong id="approval-count">1</strong></div>
+              <div class="metric"><span id="metric-one-label">Customer requests</span><strong id="request-count">2</strong></div>
+              <div class="metric"><span id="metric-two-label">Jobs today</span><strong id="work-count">8</strong></div>
+              <div class="metric"><span id="metric-three-label">Need approval</span><strong id="approval-count">1</strong></div>
             </div>
             <div class="dashboard-panels">
               <div class="panel">
                 <div class="panel-title"><h4>Today's schedule</h4><span>Updated live</span></div>
                 <div class="schedule-list">
-                  <div class="full-job"><span class="time">9:00 AM</span><div><strong>HVAC tune-up</strong><small>Riverstone Dental</small></div><span class="tag">Assigned</span></div>
-                  <div id="new-job" class="full-job hidden"><span class="time">11:30 AM</span><div><strong>AC not cooling</strong><small>Oakwood Apartments · Unit 214</small></div><span id="job-tag" class="tag warning">Pending</span></div>
-                  <div class="full-job"><span class="time">2:00 PM</span><div><strong>Drain inspection</strong><small>North Hills Cafe</small></div><span class="tag">Assigned</span></div>
+                  <div class="full-job"><span id="job-one-time" class="time">9:00 AM</span><div><strong id="job-one-title">HVAC tune-up</strong><small id="job-one-customer">Riverstone Dental</small></div><span id="job-one-tag" class="tag">Assigned</span></div>
+                  <div id="new-job" class="full-job hidden"><span id="new-job-time" class="time">11:30 AM</span><div><strong id="new-job-title">AC not cooling</strong><small id="new-job-customer">Oakwood Apartments · Unit 214</small></div><span id="job-tag" class="tag warning">Pending</span></div>
+                  <div class="full-job"><span id="job-three-time" class="time">2:00 PM</span><div><strong id="job-three-title">Drain inspection</strong><small id="job-three-customer">North Hills Cafe</small></div><span id="job-three-tag" class="tag">Assigned</span></div>
                 </div>
               </div>
               <div class="panel">
@@ -248,6 +256,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
