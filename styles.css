@@ -371,3 +371,14 @@ textarea {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Krewo v0.2 demo spacing correction */
+.industry-demo-switcher {
+  margin-bottom: 44px;
+}
+
+@media (max-width: 680px) {
+  .industry-demo-switcher {
+    margin-bottom: 28px;
+  }
+}
